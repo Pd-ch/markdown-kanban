@@ -1,0 +1,151 @@
+{
+  "name": "markdown-kanban",
+  "displayName": "Markdown Kanban",
+  "description": "Transform markdown files into visual Kanban boards - view, drag, and track your tasks with ease",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "kanban",
+    "markdown",
+    "task management",
+    "project management",
+    "visualization",
+    "todo",
+    "board"
+  ],
+  "icon": "favicon.ico",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pd-ch/markdown-kanban"
+  },
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "kanban.createBoard",
+        "title": "Create New Kanban Board",
+        "category": "Markdown Kanban",
+        "icon": "$(columns)"
+      },
+      {
+        "command": "kanban.openAsKanban",
+        "title": "Open as Kanban Board",
+        "category": "Markdown Kanban", 
+        "icon": "$(symbol-keyword)"
+      },
+      {
+        "command": "kanban.openAsMarkdown",
+        "title": "Open as Markdown",
+        "category": "Markdown Kanban",
+        "icon": "$(markdown)"
+      },
+      {
+        "command": "kanban.archiveCompleted",
+        "title": "Kanban: Archive Completed Cards"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "kanbanExplorer",
+          "name": "Kanban Boards",
+          "when": "workbenchState != empty",
+          "icon": "$(columns)"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "kanban",
+          "title": "Kanban",
+          "icon": "$(columns)"
+        }
+      ]
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "kanban.createBoard",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "kanban.openAsKanban",
+          "when": "resourceExtname == .md && activeEditor != 'kanban.board'",
+          "group": "navigation"
+        },
+        {
+          "command": "kanban.openAsMarkdown",
+          "when": "activeEditor == 'kanban.board'",
+          "group": "navigation"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "kanban.board",
+        "displayName": "Kanban Board",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          }
+        ],
+        "priority": "option"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "ts-loader": "^9.5.2",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3"
+  },
+  "dependencies": {
+    "immutability-helper": "^3.1.1",
+    "mdast": "^3.0.0",
+    "mdast-util-from-markdown": "^1.0.2",
+    "mdast-util-frontmatter": "^1.0.0",
+    "mdast-util-to-markdown": "^1.2.6",
+    "mdast-util-to-string": "^3.1.0",
+    "micromark-extension-frontmatter": "^1.0.0",
+    "micromark-util-character": "^1.1.0",
+    "micromark-util-types": "^1.0.1",
+    "unist-util-visit": "^4.1.0",
+    "classcat": "^5.0.3",
+    "eventemitter3": "^5.0.1"
+  }
+}

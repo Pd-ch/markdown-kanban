@@ -1,0 +1,288 @@
+/* VS Code theme-aware CSS variables */
+:root {
+  --vscode-foreground: var(--vscode-editor-foreground);
+  --vscode-background: var(--vscode-editor-background);
+  --vscode-border: var(--vscode-panel-border);
+  --vscode-button-background: var(--vscode-button-background);
+  --vscode-button-foreground: var(--vscode-button-foreground);
+  --vscode-button-hover-background: var(--vscode-button-hoverBackground);
+  --vscode-input-background: var(--vscode-input-background);
+  --vscode-input-border: var(--vscode-input-border);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  background-color: var(--vscode-background);
+  color: var(--vscode-foreground);
+  overflow-x: auto;
+}
+
+.kanban-container {
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.kanban-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.kanban-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.kanban-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: var(--vscode-button-hover-background);
+}
+
+.kanban-board {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  min-height: 60vh;
+}
+
+.kanban-lane {
+  background-color: var(--vscode-input-background);
+  border: 1px solid var(--vscode-border);
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--vscode-border);
+  background-color: var(--vscode-background);
+  border-radius: 8px 8px 0 0;
+}
+
+.lane-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.add-card-btn {
+  background-color: transparent;
+  color: var(--vscode-foreground);
+  border: 1px solid var(--vscode-border);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.add-card-btn:hover {
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+}
+
+.lane-body {
+  flex-grow: 1;
+  padding: 8px;
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.kanban-card {
+  background-color: var(--vscode-background);
+  border: 1px solid var(--vscode-border);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: grab;
+  transition: all 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+}
+
+/* Nested card styles */
+.card-container {
+  margin-bottom: 4px;
+}
+
+.nested-card {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: transparent;
+}
+
+.level-1 {
+  margin-left: 16px;
+}
+
+.level-2 {
+  margin-left: 32px;
+}
+
+.level-3 {
+  margin-left: 48px;
+}
+
+.level-4 {
+  margin-left: 64px;
+}
+
+.kanban-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+.kanban-card.dragging {
+  opacity: 0.5;
+  transform: rotate(5deg);
+}
+
+.card-checkbox {
+  margin: 0;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  flex-grow: 1;
+  line-height: 1.4;
+  word-wrap: break-word;
+  margin-right: 8px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.kanban-card:hover .card-actions {
+  opacity: 1;
+}
+
+.card-edit-btn,
+.card-delete-btn,
+.card-add-sub-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 3px;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.card-edit-btn:hover,
+.card-delete-btn:hover,
+.card-add-sub-btn:hover {
+  background-color: var(--vscode-button-background);
+}
+
+.card-delete-btn:hover {
+  background-color: #ff6b6b;
+}
+
+.card-add-sub-btn {
+  color: var(--vscode-textLink-foreground);
+}
+
+.card-add-sub-btn:hover {
+  background-color: var(--vscode-textLink-foreground);
+  color: var(--vscode-button-foreground);
+}
+
+/* Drag and drop indicators */
+.lane-body.drag-over {
+  background-color: var(--vscode-button-hover-background);
+  border: 2px dashed var(--vscode-button-background);
+}
+
+.drop-indicator {
+  height: 2px;
+  background-color: var(--vscode-button-background);
+  margin: 4px 0;
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.drop-indicator.active {
+  opacity: 1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .kanban-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .kanban-actions {
+    justify-content: center;
+  }
+  
+  .kanban-lane {
+    min-width: 280px;
+    max-width: 280px;
+  }
+}
+
+/* Dark theme specific adjustments */
+.vscode-dark .kanban-card {
+  border-color: #3e3e3e;
+}
+
+.vscode-dark .kanban-card:hover {
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* High contrast theme adjustments */
+.vscode-high-contrast .kanban-card,
+.vscode-high-contrast .kanban-lane {
+  border-width: 2px;
+}
+
+.vscode-high-contrast .action-btn,
+.vscode-high-contrast .add-card-btn {
+  border-width: 2px;
+}
