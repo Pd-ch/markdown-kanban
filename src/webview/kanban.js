@@ -1,3 +1,6 @@
+// Import CSS
+import './kanban.css';
+
 // Get VS Code API
 const vscode = acquireVsCodeApi();
 

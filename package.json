@@ -1,9 +1,9 @@
 {
-  "name": "markdown-kanban",
-  "displayName": "Markdown Kanban",
+  "name": "kanmark",
+  "displayName": "Markdown-based Kanban Board Viewer",
   "description": "Transform markdown files into visual Kanban boards - view, drag, and track your tasks with ease",
-  "version": "1.0.0",
-  "publisher": "your-publisher-name",
+  "version": "1.0.1",
+  "publisher": "Pd-ch",
   "engines": {
     "vscode": "^1.102.0"
   },

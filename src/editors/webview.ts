@@ -36,9 +36,6 @@ export class KanbanWebviewProvider {
         const scriptUri = this.webview.asWebviewUri(
             vscode.Uri.joinPath(this.extensionUri, 'dist', 'webview.js')
         );
-        const styleUri = this.webview.asWebviewUri(
-            vscode.Uri.joinPath(this.extensionUri, 'src', 'webview', 'kanban.css')
-        );
 
         // Use a nonce to only allow specific scripts to be run
         const nonce = getNonce();
@@ -47,9 +44,8 @@ export class KanbanWebviewProvider {
       <html lang="en">
       <head>
         <meta charset="UTF-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${this.webview.cspSource}; script-src 'nonce-${nonce}';">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${this.webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="${styleUri}" rel="stylesheet">
         <title>Kanban Board</title>
       </head>
       <body>
